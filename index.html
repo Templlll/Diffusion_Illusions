@@ -74,7 +74,7 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Peking University</span>
+            <span class="author-block">Peking University</span>
           </div>
 
           <div class="column has-text-centered">
@@ -161,15 +161,25 @@
             The images manifest distinct semantics upon rotation.
           </p>
         </div>
-        <div class="columns is-centered">
-           <!-- 🟢 [用户需修改] 替换为 Task 1 的图片 (Figure 1) -->
-           <div class="column">
-             <img src="./static/images/task1_skull_astronaut.jpg" alt="Skull and Astronaut">
-             <p class="has-text-centered">Scale=25: Skull ↔ Astronaut</p>
-           </div>
-           <div class="column">
-            <img src="./static/images/task1_ship_lighthouse.jpg" alt="Ship and Lighthouse">
-            <p class="has-text-centered">Scale=45: Ship ↔ Lighthouse</p>
+        <div class="columns is-multiline is-centered">
+          <!-- Task1: 使用网格展示多张示例图 -->
+          <div class="column is-one-third">
+            <img src="./static/images/task1/graph1.jpg" alt="task1-1" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task1/graph2.jpg" alt="task1-2" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task1/graph3.jpg" alt="task1-3" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task1/graph4.jpg" alt="task1-4" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task1/graph5.jpg" alt="task1-5" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task1/graph6.jpg" alt="task1-6" style="width:100%; height:auto;">
           </div>
         </div>
       </div>
@@ -185,11 +195,16 @@
             Investigates the geometric entanglement of two image layers via pixel-wise multiplication, allowing semantics to change upon 90° rotation.
           </p>
         </div>
-        <!-- 🟢 [用户需修改] 替换为 Task 2 的图片 (Figure 2) -->
-        <div class="has-text-centered">
-          <img src="./static/images/task2_overlays.jpg" width="80%" alt="Rotation Overlays">
-          <p>Top rows show composite scenes; bottom rows show underlying layers.</p>
+        <!-- Task2: 两张示例图，居中显示 -->
+        <div class="columns is-centered is-vcentered">
+          <div class="column is-half has-text-centered">
+            <img src="./static/images/task2/graph1.png" alt="task2-1" style="max-width:90%; height:auto;">
+          </div>
+          <div class="column is-half has-text-centered">
+            <img src="./static/images/task2/graph2.png" alt="task2-2" style="max-width:90%; height:auto;">
+          </div>
         </div>
+        <p class="has-text-centered">Top rows show composite scenes; bottom rows show underlying layers.</p>
       </div>
     </div>
     <br/>
@@ -203,14 +218,14 @@
             The image domain is partitioned into a grid, and local patches rotate 90° to reveal secondary semantics.
           </p>
         </div>
-        <!-- 🟢 [用户需修改] 替换为 Task 3 的图片 (Figure 3) -->
+        <!-- Task3: 两张示例图并列显示 -->
         <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <img src="./static/images/task3_miku_dog.jpg" alt="Miku to Dog">
+          <div class="column is-half has-text-centered">
+            <img src="./static/images/task3/graph1.png" alt="task3-1" style="max-width:90%; height:auto;">
             <p>Miku → Dog</p>
           </div>
-          <div class="column has-text-centered">
-            <img src="./static/images/task3_lion_sunflower.jpg" alt="Lion to Sunflower">
+          <div class="column is-half has-text-centered">
+            <img src="./static/images/task3/graph2.png" alt="task3-2" style="max-width:90%; height:auto;">
             <p>Lion → Sunflower</p>
           </div>
         </div>
@@ -227,10 +242,20 @@
             By optimizing a learnable texture against a specific UV map, we generate a source image that, when solved according to the puzzle logic, assembles into a completely distinct target image.
           </p>
         </div>
-        <!-- 🟢 [用户需修改] 替换为 Task 4 的图片 (Figure 4) -->
-        <div class="has-text-centered">
-          <img src="./static/images/task4_jigsaw.jpg" width="100%" alt="Jigsaw Puzzles">
-          <p>Harry Potter ↔ Lord Voldemort | Sports Car ↔ Wooden Boat</p>
+        <!-- Task4: 多张示例并列 -->
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third has-text-centered">
+            <img src="./static/images/task4/Harry_Lord.png" alt="Harry_Lord" style="width:100%; height:auto;">
+            <p>Harry Potter ↔ Lord Voldemort</p>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <img src="./static/images/task4/car_boat.png" alt="car_boat" style="width:100%; height:auto;">
+            <p>Sports Car ↔ Wooden Boat</p>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <img src="./static/images/task4/yellow_car_boat.png" alt="yellow_car_boat" style="width:100%; height:auto;">
+            <p>Variant</p>
+          </div>
         </div>
       </div>
     </div>
@@ -245,10 +270,26 @@
              Four distinct "prime images" optically combine (via simulated transparency stacking) to reveal a hidden secret image.
           </p>
         </div>
-        <!-- 🟢 [用户需修改] 替换为 Task 5 的图片 (Figure 5) -->
-        <div class="has-text-centered">
-          <img src="./static/images/task5_hidden.jpg" width="100%" alt="Hidden Characters">
-          <p>Surface images combine to form the hidden image.</p>
+        <!-- Task5: 网格展示多张示例图 -->
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third">
+            <img src="./static/images/task5/graph1.jpg" alt="task5-1" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task5/graph2.jpg" alt="task5-2" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task5/graph3.jpg" alt="task5-3" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task5/graph4.jpg" alt="task5-4" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task5/graph5.jpg" alt="task5-5" style="width:100%; height:auto;">
+          </div>
+          <div class="column is-one-third">
+            <img src="./static/images/task5/graph6.jpg" alt="task5-6" style="width:100%; height:auto;">
+          </div>
         </div>
       </div>
     </div>
