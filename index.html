@@ -29,11 +29,45 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
+  <style>
+    /* 简易 Lightbox */
+    .lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10000;}
+    .lightbox-overlay img,.lightbox-overlay video{max-width:90%;max-height:90%;box-shadow:0 10px 40px rgba(0,0,0,0.6);}
+    .lightbox-close{position:fixed;top:18px;right:22px;color:#fff;font-size:28px;cursor:pointer;z-index:10001}
+    /* Carousel item image fit */
+    .carousel .carousel-item img{width:100%;height:auto;display:block}
+  </style>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <script>
+    // 简单 Lightbox 实现（图片和视频）
+    function openLightbox(type, src){
+      const overlay = document.createElement('div'); overlay.className='lightbox-overlay';
+      const close = document.createElement('div'); close.className='lightbox-close'; close.innerHTML='\u2715';
+      close.onclick = ()=> { document.body.removeChild(overlay); document.body.removeChild(close); };
+      if(type==='video'){
+        const v = document.createElement('video'); v.src = src; v.controls = true; v.autoplay = true; v.playsInline = true; overlay.appendChild(v);
+      } else {
+        const img = document.createElement('img'); img.src = src; overlay.appendChild(img);
+      }
+      overlay.onclick = (e)=>{ if(e.target===overlay){ close.onclick(); } };
+      document.body.appendChild(overlay); document.body.appendChild(close);
+    }
+
+    document.addEventListener('click', function(e){
+      const t = e.target.closest && e.target.closest('.lightbox-trigger');
+      if(!t) return;
+      e.preventDefault();
+      const src = t.getAttribute('data-src') || t.src;
+      const type = t.getAttribute('data-type') || (t.tagName.toLowerCase()==='video' ? 'video' : 'image');
+      openLightbox(type, src);
+    });
+  </script>
 </head>
 <body>
 
@@ -161,25 +195,24 @@
             The images manifest distinct semantics upon rotation.
           </p>
         </div>
-        <div class="columns is-multiline is-centered">
-          <!-- Task1: 使用网格展示多张示例图 -->
-          <div class="column is-one-third">
-            <img src="./static/images/task1/graph1.jpg" alt="task1-1" style="width:100%; height:auto;">
+        <div class="carousel" id="carousel-task1">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task1/graph1.jpg" loading="lazy" src="./static/images/task1/graph1.jpg" alt="task1-1">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task1/graph2.jpg" alt="task1-2" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task1/graph2.jpg" loading="lazy" src="./static/images/task1/graph2.jpg" alt="task1-2">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task1/graph3.jpg" alt="task1-3" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task1/graph3.jpg" loading="lazy" src="./static/images/task1/graph3.jpg" alt="task1-3">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task1/graph4.jpg" alt="task1-4" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task1/graph4.jpg" loading="lazy" src="./static/images/task1/graph4.jpg" alt="task1-4">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task1/graph5.jpg" alt="task1-5" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task1/graph5.jpg" loading="lazy" src="./static/images/task1/graph5.jpg" alt="task1-5">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task1/graph6.jpg" alt="task1-6" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task1/graph6.jpg" loading="lazy" src="./static/images/task1/graph6.jpg" alt="task1-6">
           </div>
         </div>
       </div>
@@ -198,10 +231,10 @@
         <!-- Task2: 两张示例图，居中显示 -->
         <div class="columns is-centered is-vcentered">
           <div class="column is-half has-text-centered">
-            <img src="./static/images/task2/graph1.png" alt="task2-1" style="max-width:90%; height:auto;">
+            <img class="lightbox-trigger" data-src="./static/images/task2/graph1.png" loading="lazy" src="./static/images/task2/graph1.png" alt="task2-1" style="max-width:90%; height:auto;">
           </div>
           <div class="column is-half has-text-centered">
-            <img src="./static/images/task2/graph2.png" alt="task2-2" style="max-width:90%; height:auto;">
+            <img class="lightbox-trigger" data-src="./static/images/task2/graph2.png" loading="lazy" src="./static/images/task2/graph2.png" alt="task2-2" style="max-width:90%; height:auto;">
           </div>
         </div>
         <p class="has-text-centered">Top rows show composite scenes; bottom rows show underlying layers.</p>
@@ -221,11 +254,11 @@
         <!-- Task3: 两张示例图并列显示 -->
         <div class="columns is-centered">
           <div class="column is-half has-text-centered">
-            <img src="./static/images/task3/graph1.png" alt="task3-1" style="max-width:90%; height:auto;">
+            <img class="lightbox-trigger" data-src="./static/images/task3/graph1.png" loading="lazy" src="./static/images/task3/graph1.png" alt="task3-1" style="max-width:90%; height:auto;">
             <p>Miku → Dog</p>
           </div>
           <div class="column is-half has-text-centered">
-            <img src="./static/images/task3/graph2.png" alt="task3-2" style="max-width:90%; height:auto;">
+            <img class="lightbox-trigger" data-src="./static/images/task3/graph2.png" loading="lazy" src="./static/images/task3/graph2.png" alt="task3-2" style="max-width:90%; height:auto;">
             <p>Lion → Sunflower</p>
           </div>
         </div>
@@ -243,18 +276,18 @@
           </p>
         </div>
         <!-- Task4: 多张示例并列 -->
-        <div class="columns is-multiline is-centered">
-          <div class="column is-one-third has-text-centered">
-            <img src="./static/images/task4/Harry_Lord.png" alt="Harry_Lord" style="width:100%; height:auto;">
-            <p>Harry Potter ↔ Lord Voldemort</p>
+        <div class="carousel" id="carousel-task4">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task4/Harry_Lord.png" loading="lazy" src="./static/images/task4/Harry_Lord.png" alt="Harry_Lord">
+            <p class="has-text-centered">Harry Potter ↔ Lord Voldemort</p>
           </div>
-          <div class="column is-one-third has-text-centered">
-            <img src="./static/images/task4/car_boat.png" alt="car_boat" style="width:100%; height:auto;">
-            <p>Sports Car ↔ Wooden Boat</p>
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task4/car_boat.png" loading="lazy" src="./static/images/task4/car_boat.png" alt="car_boat">
+            <p class="has-text-centered">Sports Car ↔ Wooden Boat</p>
           </div>
-          <div class="column is-one-third has-text-centered">
-            <img src="./static/images/task4/yellow_car_boat.png" alt="yellow_car_boat" style="width:100%; height:auto;">
-            <p>Variant</p>
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task4/yellow_car_boat.png" loading="lazy" src="./static/images/task4/yellow_car_boat.png" alt="yellow_car_boat">
+            <p class="has-text-centered">Variant</p>
           </div>
         </div>
       </div>
@@ -271,24 +304,24 @@
           </p>
         </div>
         <!-- Task5: 网格展示多张示例图 -->
-        <div class="columns is-multiline is-centered">
-          <div class="column is-one-third">
-            <img src="./static/images/task5/graph1.jpg" alt="task5-1" style="width:100%; height:auto;">
+        <div class="carousel" id="carousel-task5">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task5/graph1.jpg" loading="lazy" src="./static/images/task5/graph1.jpg" alt="task5-1">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task5/graph2.jpg" alt="task5-2" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task5/graph2.jpg" loading="lazy" src="./static/images/task5/graph2.jpg" alt="task5-2">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task5/graph3.jpg" alt="task5-3" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task5/graph3.jpg" loading="lazy" src="./static/images/task5/graph3.jpg" alt="task5-3">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task5/graph4.jpg" alt="task5-4" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task5/graph4.jpg" loading="lazy" src="./static/images/task5/graph4.jpg" alt="task5-4">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task5/graph5.jpg" alt="task5-5" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task5/graph5.jpg" loading="lazy" src="./static/images/task5/graph5.jpg" alt="task5-5">
           </div>
-          <div class="column is-one-third">
-            <img src="./static/images/task5/graph6.jpg" alt="task5-6" style="width:100%; height:auto;">
+          <div class="carousel-item has-background">
+            <img class="lightbox-trigger" data-src="./static/images/task5/graph6.jpg" loading="lazy" src="./static/images/task5/graph6.jpg" alt="task5-6">
           </div>
         </div>
       </div>
