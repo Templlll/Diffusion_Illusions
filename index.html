@@ -40,6 +40,17 @@
     .lightbox-caption{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;z-index:10002;background:rgba(0,0,0,0.4);padding:6px 12px;border-radius:6px}
     /* Carousel item image fit */
     .carousel .carousel-item img{width:100%;height:auto;display:block}
+    /* 美化 carousel 控件 */
+    .custom-carousel{position:relative}
+    .carousel-nav-button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);color:#fff;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
+    .carousel-nav-button:hover{background:rgba(0,0,0,0.6)}
+    .carousel-nav-button.prev{left:8px}
+    .carousel-nav-button.next{right:8px}
+    .carousel-dots{position:absolute;left:50%;transform:translateX(-50%);bottom:10px;display:flex;gap:8px;z-index:50}
+    .carousel-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer}
+    .carousel-dot.active{background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.4)}
+    /* 任务模块统一间距 */
+    .task-section{padding-top:1.2rem;padding-bottom:1.2rem}
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -144,6 +155,43 @@
       new MutationObserver(buildItems).observe(document.body, {childList:true, subtree:true});
     })();
   </script>
+
+    <script>
+      // Enhance bulma-carousel: add prettier arrows & dots, wire to instances
+      window.addEventListener('load', function(){
+        // (re)attach carousels if needed
+        var instances = [];
+        try{ instances = bulmaCarousel.attach('.carousel', {slidesToScroll:1, slidesToShow:1, loop:true, autoplay:false}); }catch(e){}
+        var carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(function(car){
+          car.classList.add('custom-carousel');
+          // create nav buttons
+          if(!car.querySelector('.carousel-nav-button')){
+            var prev = document.createElement('div'); prev.className='carousel-nav-button prev'; prev.innerHTML='\u276E';
+            var next = document.createElement('div'); next.className='carousel-nav-button next'; next.innerHTML='\u276F';
+            car.appendChild(prev); car.appendChild(next);
+            // dots
+            var items = car.querySelectorAll('.carousel-item');
+            var dots = document.createElement('div'); dots.className='carousel-dots';
+            items.forEach(function(it, idx){ var d = document.createElement('div'); d.className='carousel-dot'; d.dataset.idx=idx; dots.appendChild(d); });
+            car.appendChild(dots);
+
+            // find instance
+            var inst = car.bulmaCarousel || (instances && instances.find(i=>i && i.element===car));
+            function goNext(){ if(inst && inst.next) { inst.next(); } }
+            function goPrev(){ if(inst && inst.previous) { inst.previous(); } else if(inst && inst.prev) { inst.prev(); } }
+            prev.addEventListener('click', function(e){ e.stopPropagation(); goPrev(); });
+            next.addEventListener('click', function(e){ e.stopPropagation(); goNext(); });
+
+            // dot click
+            dots.querySelectorAll('.carousel-dot').forEach(function(d){ d.addEventListener('click', function(e){ var idx = parseInt(this.dataset.idx); if(inst && inst.show) { inst.show(idx); } else if(inst && inst.goTo) { inst.goTo(idx); } }); });
+
+            // update active dot on carousel events
+            if(inst && inst.on){ inst.on('after:show', function(state){ var active = state.index || state; var all = dots.querySelectorAll('.carousel-dot'); all.forEach(function(dd,i){ dd.classList.toggle('active', i==active); }); }); }
+          }
+        });
+      });
+    </script>
 </head>
 <body>
 
