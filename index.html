@@ -68,13 +68,13 @@
           
           <div class="is-size-5 publication-authors">
             <!-- 🟢 [用户需修改] 作者姓名 -->
-            <span class="author-block">Bowen Tan<sup>1</sup>,</span>
-            <span class="author-block">Shi Sheng<sup>1</sup>,</span>
-            <span class="author-block">Hanyu Zheng<sup>1</sup></span>
+            <span class="author-block">Bowen Tan,</span>
+            <span class="author-block">Shi Sheng,</span>
+            <span class="author-block">Hanyu Zheng</span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Peking University (Example Affiliation)</span>
+            <span class="author-block"><sup>1</sup>Peking University</span>
           </div>
 
           <div class="column has-text-centered">
@@ -110,7 +110,7 @@
 </section>
 
 <!-- Teaser Section: 最好放一个最酷炫的 demo -->
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <!-- 🟢 [用户需修改] 建议：把 Task 1 的 Skull/Astronaut 做成一个旋转的视频或 GIF -->
@@ -123,7 +123,7 @@
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- Abstract Section -->
 <section class="section">
@@ -282,6 +282,31 @@
       </div>
     </div>
   </div>
+
+    <!-- Task Moving -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Task 1: Flippy Illusions</h2>
+        <div class="content has-text-justified">
+          <p>
+            We reproduced the generative framework for orientation-dependent optical illusions (180-degree rotation).
+            The images manifest distinct semantics upon rotation.
+          </p>
+        </div>
+        <div class="columns is-centered">
+           <!-- 已替换：使用视频展示 Task 1（请把 moving_blur.mp4 放到 static/videos/） -->
+           <div class="column">
+             <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
+               <source src="./static/videos/moving_blur.mp4" type="video/mp4">
+               Your browser does not support the video tag.
+             </video>
+             <p class="has-text-centered">Scale=25: Skull ↔ Astronaut</p>
+           </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+
 </section>
 
 <!-- BibTeX -->
