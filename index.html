@@ -267,21 +267,23 @@
   </div>
 </section>
 
-<!-- Teaser Section: 最好放一个最酷炫的 demo -->
-<!-- <section class="hero teaser">
+<!-- Teaser Section: Flippy demo -->
+<section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- 🟢 [用户需修改] 建议：把 Task 1 的 Skull/Astronaut 做成一个旋转的视频或 GIF -->
-      <!-- 如果没有视频，可以把 <video> 标签换成 <img> 标签 -->
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser_illusion.mp4" type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Flippy Illusions</span>: An image that reveals a second semantic meaning when rotated 180°.
+      <!-- Display rotation demo video -->
+      <div style="display:flex;justify-content:center;">
+        <video id="teaser" controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+          <source src="./static/videos/rotation.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <h2 class="subtitle has-text-centered" style="margin-top:1rem;">
+        These two images, when rotated every sixty degrees and stitched together, each produce a new image.
       </h2>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- Abstract Section -->
 <section class="section">
@@ -524,7 +526,7 @@
     <pre><code>@article{diffusionillusions2024,
   author    = {Tan, Bowen and Sheng, Shi and Zheng, Hanyu},
   title     = {Creating Visual Cognitive Illusions - Milestone Report},
-  year      = {2024},
+  year      = {2026},
 }</code></pre>
   </div>
 </section>
