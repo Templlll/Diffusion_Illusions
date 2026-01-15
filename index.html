@@ -30,10 +30,14 @@
   <link rel="icon" href="./static/images/favicon.svg">
 
   <style>
-    /* 简易 Lightbox */
-    .lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10000;}
-    .lightbox-overlay img,.lightbox-overlay video{max-width:90%;max-height:90%;box-shadow:0 10px 40px rgba(0,0,0,0.6);}
-    .lightbox-close{position:fixed;top:18px;right:22px;color:#fff;font-size:28px;cursor:pointer;z-index:10001}
+    /* Lightbox 样式 */
+    .lightbox-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.88);z-index:10000;padding:20px}
+    .lightbox-content img,.lightbox-content video{max-width:100%;max-height:100%;box-shadow:0 10px 40px rgba(0,0,0,0.6);border-radius:6px}
+    .lightbox-close{position:fixed;top:18px;right:22px;color:#fff;font-size:28px;cursor:pointer;z-index:10002}
+    .lightbox-nav{position:fixed;top:50%;transform:translateY(-50%);color:#fff;font-size:34px;cursor:pointer;z-index:10002;padding:12px;user-select:none}
+    .lightbox-prev{left:8px}
+    .lightbox-next{right:8px}
+    .lightbox-caption{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);color:#fff;z-index:10002;background:rgba(0,0,0,0.4);padding:6px 12px;border-radius:6px}
     /* Carousel item image fit */
     .carousel .carousel-item img{width:100%;height:auto;display:block}
   </style>
@@ -45,28 +49,100 @@
   <script src="./static/js/index.js"></script>
 
   <script>
-    // 简单 Lightbox 实现（图片和视频）
-    function openLightbox(type, src){
-      const overlay = document.createElement('div'); overlay.className='lightbox-overlay';
-      const close = document.createElement('div'); close.className='lightbox-close'; close.innerHTML='\u2715';
-      close.onclick = ()=> { document.body.removeChild(overlay); document.body.removeChild(close); };
-      if(type==='video'){
-        const v = document.createElement('video'); v.src = src; v.controls = true; v.autoplay = true; v.playsInline = true; overlay.appendChild(v);
-      } else {
-        const img = document.createElement('img'); img.src = src; overlay.appendChild(img);
+    // 更强的 Lightbox：支持 prev/next 与键盘导航
+    (function(){
+      let items = [];
+      let currentIndex = -1;
+      function buildItems(){ items = Array.from(document.querySelectorAll('.lightbox-trigger')); }
+      function createOverlay(){
+        const overlay = document.createElement('div'); overlay.className='lightbox-overlay';
+        const content = document.createElement('div'); content.className='lightbox-content'; overlay.appendChild(content);
+        const close = document.createElement('div'); close.className='lightbox-close'; close.innerHTML='\u2715';
+        const prev = document.createElement('div'); prev.className='lightbox-nav lightbox-prev'; prev.innerHTML='\u276E';
+        const next = document.createElement('div'); next.className='lightbox-nav lightbox-next'; next.innerHTML='\u276F';
+        const caption = document.createElement('div'); caption.className='lightbox-caption'; caption.style.display='none';
+        return {overlay, content, close, prev, next, caption};
       }
-      overlay.onclick = (e)=>{ if(e.target===overlay){ close.onclick(); } };
-      document.body.appendChild(overlay); document.body.appendChild(close);
-    }
 
-    document.addEventListener('click', function(e){
-      const t = e.target.closest && e.target.closest('.lightbox-trigger');
-      if(!t) return;
-      e.preventDefault();
-      const src = t.getAttribute('data-src') || t.src;
-      const type = t.getAttribute('data-type') || (t.tagName.toLowerCase()==='video' ? 'video' : 'image');
-      openLightbox(type, src);
-    });
+      function openAt(index){
+        if(items.length===0) buildItems();
+        if(index<0 || index>=items.length) return;
+        currentIndex = index;
+        const el = items[currentIndex];
+        const src = el.getAttribute('data-src') || el.src;
+        const type = el.getAttribute('data-type') || (el.tagName.toLowerCase()==='video' ? 'video' : 'image');
+
+        const parts = createOverlay();
+        const {overlay, content, close, prev, next, caption} = parts;
+
+        function show(){
+          content.innerHTML = '';
+          if(type==='video' || src.endsWith('.mp4')){
+            const v = document.createElement('video'); v.src = src; v.controls = true; v.autoplay = true; v.playsInline = true; v.style.maxWidth='100%'; v.style.maxHeight='100%'; content.appendChild(v);
+          } else {
+            const img = document.createElement('img'); img.src = src; img.alt = el.alt || ''; img.style.maxWidth='100%'; img.style.maxHeight='100%'; content.appendChild(img);
+          }
+          caption.textContent = el.getAttribute('data-caption') || el.alt || '';
+          caption.style.display = caption.textContent ? 'block' : 'none';
+        }
+
+        // handlers
+        function onPrev(e){ e && e.stopPropagation(); currentIndex = (currentIndex-1+items.length)%items.length; updateForCurrent(); }
+        function onNext(e){ e && e.stopPropagation(); currentIndex = (currentIndex+1)%items.length; updateForCurrent(); }
+        function onClose(){ cleanup(); }
+        function onKey(e){ if(e.key==='Escape') onClose(); else if(e.key==='ArrowLeft') onPrev(); else if(e.key==='ArrowRight') onNext(); }
+        function onClickOverlay(e){ if(e.target===overlay) onClose(); }
+        function updateForCurrent(){
+          const el2 = items[currentIndex];
+          const src2 = el2.getAttribute('data-src') || el2.src;
+          const type2 = el2.getAttribute('data-type') || (el2.tagName.toLowerCase()==='video' ? 'video' : 'image');
+          // replace content
+          content.innerHTML = '';
+          if(type2==='video' || src2.endsWith('.mp4')){
+            const v = document.createElement('video'); v.src = src2; v.controls = true; v.autoplay = true; v.playsInline = true; content.appendChild(v);
+          } else {
+            const img = document.createElement('img'); img.src = src2; img.alt = el2.alt || ''; content.appendChild(img);
+          }
+          caption.textContent = el2.getAttribute('data-caption') || el2.alt || '';
+          caption.style.display = caption.textContent ? 'block' : 'none';
+        }
+        function cleanup(){
+          document.removeEventListener('keydown', onKey);
+          overlay.removeEventListener('click', onClickOverlay);
+          prev.removeEventListener('click', onPrev);
+          next.removeEventListener('click', onNext);
+          close.removeEventListener('click', onClose);
+          document.body.removeChild(overlay);
+          document.body.removeChild(prev);
+          document.body.removeChild(next);
+          document.body.removeChild(close);
+          if(caption.parentNode) document.body.removeChild(caption);
+        }
+
+        show();
+        document.body.appendChild(overlay);
+        document.body.appendChild(prev); document.body.appendChild(next); document.body.appendChild(close); document.body.appendChild(caption);
+
+        overlay.addEventListener('click', onClickOverlay);
+        prev.addEventListener('click', onPrev);
+        next.addEventListener('click', onNext);
+        close.addEventListener('click', onClose);
+        document.addEventListener('keydown', onKey);
+      }
+
+      // Delegate click to open lightbox at correct index
+      document.addEventListener('click', function(e){
+        const t = e.target.closest && e.target.closest('.lightbox-trigger');
+        if(!t) return;
+        e.preventDefault();
+        if(items.length===0) buildItems();
+        const idx = items.indexOf(t);
+        if(idx===-1){ buildItems(); }
+        openAt(items.indexOf(t));
+      });
+      // Rebuild items when DOM changes (simple approach)
+      new MutationObserver(buildItems).observe(document.body, {childList:true, subtree:true});
+    })();
   </script>
 </head>
 <body>
@@ -276,18 +352,18 @@
           </p>
         </div>
         <!-- Task4: 多张示例并列 -->
-        <div class="carousel" id="carousel-task4">
-          <div class="carousel-item has-background">
-            <img class="lightbox-trigger" data-src="./static/images/task4/Harry_Lord.png" loading="lazy" src="./static/images/task4/Harry_Lord.png" alt="Harry_Lord">
-            <p class="has-text-centered">Harry Potter ↔ Lord Voldemort</p>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-third has-text-centered">
+            <img class="lightbox-trigger" data-src="./static/images/task4/Harry_Lord.png" loading="lazy" src="./static/images/task4/Harry_Lord.png" alt="Harry_Lord" style="width:100%; height:auto;">
+            <p>Harry Potter ↔ Lord Voldemort</p>
           </div>
-          <div class="carousel-item has-background">
-            <img class="lightbox-trigger" data-src="./static/images/task4/car_boat.png" loading="lazy" src="./static/images/task4/car_boat.png" alt="car_boat">
-            <p class="has-text-centered">Sports Car ↔ Wooden Boat</p>
+          <div class="column is-one-third has-text-centered">
+            <img class="lightbox-trigger" data-src="./static/images/task4/car_boat.png" loading="lazy" src="./static/images/task4/car_boat.png" alt="car_boat" style="width:100%; height:auto;">
+            <p>Sports Car ↔ Wooden Boat</p>
           </div>
-          <div class="carousel-item has-background">
-            <img class="lightbox-trigger" data-src="./static/images/task4/yellow_car_boat.png" loading="lazy" src="./static/images/task4/yellow_car_boat.png" alt="yellow_car_boat">
-            <p class="has-text-centered">Variant</p>
+          <div class="column is-one-third has-text-centered">
+            <img class="lightbox-trigger" data-src="./static/images/task4/yellow_car_boat.png" loading="lazy" src="./static/images/task4/yellow_car_boat.png" alt="yellow_car_boat" style="width:100%; height:auto;">
+            <p>Variant</p>
           </div>
         </div>
       </div>
