@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- 🟢 [用户需修改] 修改网页描述 -->
+  <meta name="description"
+        content="Creating Visual Cognitive Illusions: Final Report on generating visual illusions with diffusion models.">
+  <meta name="keywords" content="Visual Illusions, Diffusion Models, Visual Cognitive Illusions, Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- 🟢 [用户需修改] 网页标题 -->
+  <title>Creating Visual Cognitive Illusions</title>
+
+  <!-- Google Analytics (可以保留或删除) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="#">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- 🟢 [用户需修改] 论文/报告标题 -->
+          <h1 class="title is-1 publication-title">Creating Visual Cognitive Illusions</h1>
+          <h2 class="title is-3 publication-title">Milestone Report</h2>
+          
+          <div class="is-size-5 publication-authors">
+            <!-- 🟢 [用户需修改] 作者姓名 -->
+            <span class="author-block">Bowen Tan<sup>1</sup>,</span>
+            <span class="author-block">Shi Sheng<sup>1</sup>,</span>
+            <span class="author-block">Hanyu Zheng<sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Peking University (Example Affiliation)</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link -->
+              <span class="link-block">
+                <!-- 🟢 [用户需修改] 上传你的PDF文件到 static/videos/ 或其他位置，并修改 href -->
+                <a href="./static/report.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Report PDF</span>
+                </a>
+              </span>
+              <!-- Code Link -->
+              <span class="link-block">
+                <!-- 🟢 [用户需修改] 你的 GitHub 仓库链接 -->
+                <a href="https://github.com/YOUR_USERNAME/YOUR_REPO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser Section: 最好放一个最酷炫的 demo -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- 🟢 [用户需修改] 建议：把 Task 1 的 Skull/Astronaut 做成一个旋转的视频或 GIF -->
+      <!-- 如果没有视频，可以把 <video> 标签换成 <img> 标签 -->
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser_illusion.mp4" type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Flippy Illusions</span>: An image that reveals a second semantic meaning when rotated 180°.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- 🟢 [用户需修改] 摘要内容 (已根据 PDF 填入) -->
+          <p>
+            This project explores the computational generation of multi-arrangement visual illusions by leveraging the rich
+            generative priors of pre-trained text-to-image diffusion models. Our goal is to reproduce and extend a unified gen
+            erative framework capable of automating this process.
+          </p>
+          <p>
+            We systematically implement five distinct types of illusions. Furthermore, we aim to advance beyond text-only conditioning by introducing "Image Prompt Supporting" and enable more precise control over the visual cognitive experience.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tasks Section: 核心展示区域 -->
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    <!-- Task 1 -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Task 1: Flippy Illusions</h2>
+        <div class="content has-text-justified">
+          <p>
+            We reproduced the generative framework for orientation-dependent optical illusions (180-degree rotation).
+            The images manifest distinct semantics upon rotation.
+          </p>
+        </div>
+        <div class="columns is-centered">
+           <!-- 🟢 [用户需修改] 替换为 Task 1 的图片 (Figure 1) -->
+           <div class="column">
+             <img src="./static/images/task1_skull_astronaut.jpg" alt="Skull and Astronaut">
+             <p class="has-text-centered">Scale=25: Skull ↔ Astronaut</p>
+           </div>
+           <div class="column">
+            <img src="./static/images/task1_ship_lighthouse.jpg" alt="Ship and Lighthouse">
+            <p class="has-text-centered">Scale=45: Ship ↔ Lighthouse</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <!-- Task 2 -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Task 2: Rotation Overlays</h2>
+        <div class="content has-text-justified">
+          <p>
+            Investigates the geometric entanglement of two image layers via pixel-wise multiplication, allowing semantics to change upon 90° rotation.
+          </p>
+        </div>
+        <!-- 🟢 [用户需修改] 替换为 Task 2 的图片 (Figure 2) -->
+        <div class="has-text-centered">
+          <img src="./static/images/task2_overlays.jpg" width="80%" alt="Rotation Overlays">
+          <p>Top rows show composite scenes; bottom rows show underlying layers.</p>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <!-- Task 3 -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Task 3: Twist Squares</h2>
+        <div class="content has-text-justified">
+          <p>
+            The image domain is partitioned into a grid, and local patches rotate 90° to reveal secondary semantics.
+          </p>
+        </div>
+        <!-- 🟢 [用户需修改] 替换为 Task 3 的图片 (Figure 3) -->
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <img src="./static/images/task3_miku_dog.jpg" alt="Miku to Dog">
+            <p>Miku → Dog</p>
+          </div>
+          <div class="column has-text-centered">
+            <img src="./static/images/task3_lion_sunflower.jpg" alt="Lion to Sunflower">
+            <p>Lion → Sunflower</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <!-- Task 4 -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Task 4: Parker’s Jigsaw Puzzles</h2>
+        <div class="content has-text-justified">
+          <p>
+            By optimizing a learnable texture against a specific UV map, we generate a source image that, when solved according to the puzzle logic, assembles into a completely distinct target image.
+          </p>
+        </div>
+        <!-- 🟢 [用户需修改] 替换为 Task 4 的图片 (Figure 4) -->
+        <div class="has-text-centered">
+          <img src="./static/images/task4_jigsaw.jpg" width="100%" alt="Jigsaw Puzzles">
+          <p>Harry Potter ↔ Lord Voldemort | Sports Car ↔ Wooden Boat</p>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <!-- Task 5 -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Task 5: Hidden Characters</h2>
+        <div class="content has-text-justified">
+          <p>
+             Four distinct "prime images" optically combine (via simulated transparency stacking) to reveal a hidden secret image.
+          </p>
+        </div>
+        <!-- 🟢 [用户需修改] 替换为 Task 5 的图片 (Figure 5) -->
+        <div class="has-text-centered">
+          <img src="./static/images/task5_hidden.jpg" width="100%" alt="Hidden Characters">
+          <p>Surface images combine to form the hidden image.</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Extensions Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Extending the Framework</h2>
+        <h3 class="title is-4">Image Prompt Supporting</h3>
+        <div class="content has-text-justified">
+          <p>
+            We jointly use both text prompt and image prompt to generate illusions, successfully embedding image prompts (e.g., Mona Lisa, Lion) into scenes described by texts.
+          </p>
+        </div>
+        <!-- 🟢 [用户需修改] 替换为 Extension 的图片 (Figure 6) -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <img src="./static/images/ext_monalisa.jpg" alt="Mona Lisa Illusion">
+            <p>Mona-Lisa in oil painting</p>
+          </div>
+          <div class="column">
+            <img src="./static/images/ext_lion.jpg" alt="Lion Illusion">
+            <p>Lion in town</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <p>If you find this project useful, please cite our report:</p>
+    <!-- 🟢 [用户需修改] 可以在这里填入自定义的 BibTeX -->
+    <pre><code>@article{diffusionillusions2024,
+  author    = {Tan, Bowen and Sheng, Shi and Zheng, Hanyu},
+  title     = {Creating Visual Cognitive Illusions - Milestone Report},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+        Template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
