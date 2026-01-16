@@ -222,7 +222,7 @@
         <div class="column has-text-centered">
           <!-- 🟢 [用户需修改] 论文/报告标题 -->
           <h1 class="title is-1 publication-title">Creating Visual Cognitive Illusions</h1>
-          <h2 class="title is-3 publication-title">Milestone Report</h2>
+          <h2 class="title is-3 publication-title">Computer Vision Project</h2>
           
           <div class="is-size-5 publication-authors">
             <!-- 🟢 [用户需修改] 作者姓名 -->
@@ -502,14 +502,28 @@
           </p>
         </div>
         <div class="columns is-centered">
-           <!-- 已替换：使用视频展示 Task 1（请把 moving_blur.mp4 放到 static/videos/） -->
-           <div class="column">
-             <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
-               <source src="./static/videos/moving_blur.mp4" type="video/mp4">
-               Your browser does not support the video tag.
-             </video>
-             <p class="has-text-centered">Scale=25: Skull ↔ Astronaut</p>
-           </div>
+          <!-- 展示 static/videos 下的三个 blur_*.mp4 视频 -->
+          <div class="column is-one-third has-text-centered">
+            <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
+              <source src="./static/videos/blur_panda.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="has-text-centered">Blur: Panda</p>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
+              <source src="./static/videos/blur_people.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="has-text-centered">Blur: People</p>
+          </div>
+          <div class="column is-one-third has-text-centered">
+            <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
+              <source src="./static/videos/blur_rabbit.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="has-text-centered">Blur: Rabbit</p>
+          </div>
         </div>
       </div>
     </div>
