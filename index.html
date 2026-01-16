@@ -267,23 +267,7 @@
   </div>
 </section>
 
-<!-- Teaser Section: Flippy demo -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- Display rotation demo video -->
-      <div style="display:flex;justify-content:center;">
-        <video id="teaser" controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
-          <source src="./static/videos/rotation.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <h2 class="subtitle has-text-centered" style="margin-top:1rem;">
-        These two images, when rotated every sixty degrees and stitched together, each produce a new image.
-      </h2>
-    </div>
-  </div>
-</section>
+<!-- Teaser Section removed: rotation demo moved to Extending the Framework -->
 
 <!-- Abstract Section -->
 <section class="section">
@@ -413,7 +397,7 @@
           </div>
           <div class="column is-one-third has-text-centered">
             <img class="lightbox-trigger" data-src="./static/images/task4/yellow_car_boat.png" loading="lazy" src="./static/images/task4/yellow_car_boat.png" alt="yellow_car_boat" style="width:100%; height:auto;">
-            <p>Variant</p>
+            <p>Sports Car ↔ Wooden Boat (Variant)</p>
           </div>
         </div>
       </div>
@@ -471,58 +455,88 @@
         <!-- 🟢 [用户需修改] 替换为 Extension 的图片 (Figure 6) -->
         <div class="columns is-centered has-text-centered">
           <div class="column">
-            <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa.png" alt="MonaLisa">
-            <p>Mona-Lisa</p>
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" alt="MonaLisa Origin" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Mona-Lisa (origin)</p>
           </div>
           <div class="column">
-            <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" alt="MonaLisa Origin">
-            <p>Mona-Lisa (origin)</p>
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa.png" alt="MonaLisa" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Mona-Lisa(Hidden)</p>
           </div>
           <div class="column">
-            <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lion.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion.png" alt="Lion">
-            <p>Lion</p>
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lion_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion_origin.png" alt="Lion Origin" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Lion (origin)</p>
           </div>
           <div class="column">
-            <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lion_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion_origin.png" alt="Lion Origin">
-            <p>Lion (origin)</p>
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lio(Hidden).png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion.png" alt="Lion" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Lion</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-    <!-- Task Moving -->
+    <!-- Rotation demo (moved here from teaser) -->
+    <h3 class="title is-4">Rotation Demo</h3>
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <div style="display:flex;justify-content:center;">
+          <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+            <source src="./static/videos/rotation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="subtitle has-text-centered" style="margin-top:1rem;">These two images, when rotated every sixty degrees and stitched together, each produce a new image.</p>
+      </div>
+    </div>
+
+    <!-- Moving blur (same level as Image Prompt Supporting) -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Task : Moving blur</h2>
+        <h3 class="title is-4">Moving blur</h3>
         <div class="content has-text-justified">
           <p>
             We reproduced the generative framework for orientation-dependent optical illusions (180-degree rotation).
             The images manifest distinct semantics upon rotation.
           </p>
         </div>
-        <div class="columns is-centered">
-          <!-- 展示 static/videos 下的三个 blur_*.mp4 视频 -->
-          <div class="column is-one-third has-text-centered">
-            <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
-              <source src="./static/videos/blur_panda.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="has-text-centered">Blur: Panda</p>
+        <div class="columns is-centered is-multiline">
+          <!-- 每行展示一个视频，大小与 rotation.mp4 保持一致（居中，max-width:100%） -->
+          <div class="column is-full has-text-centered">
+            <div style="display:flex;justify-content:center;">
+              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+                <source src="./static/videos/blur_panda.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Mountain - Panda</p>
           </div>
-          <div class="column is-one-third has-text-centered">
-            <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
-              <source src="./static/videos/blur_people.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="has-text-centered">Blur: People</p>
+
+          <div class="column is-full has-text-centered">
+            <div style="display:flex;justify-content:center;">
+              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+                <source src="./static/videos/blur_people.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Dog - People</p>
           </div>
-          <div class="column is-one-third has-text-centered">
-            <video controls autoplay muted loop playsinline style="max-width:100%; height:auto;">
-              <source src="./static/videos/blur_rabbit.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p class="has-text-centered">Blur: Rabbit</p>
+
+          <div class="column is-full has-text-centered">
+            <div style="display:flex;justify-content:center;">
+              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+                <source src="./static/videos/blur_rabbit.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Duck - Rabbit</p>
           </div>
         </div>
       </div>
