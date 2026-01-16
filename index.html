@@ -301,9 +301,19 @@
           </div>
         </div>
 
-        <p class="content has-text-justified" style="max-width:64ch;margin:1rem auto;">
-          The feature transforms a human face's contour and facial features into a fruit platter that still resembles a face）。
-        </p>
+          <div style="display:flex;justify-content:center;align-items:center;gap:2rem;margin-top:0.5rem;">
+            <div style="flex:0 0 35%;text-align:center;">
+              <p class="subtitle has-text-centered">Human face</p>
+            </div>
+            <div style="flex:0 0 10%;"></div>
+            <div style="flex:0 0 35%;text-align:center;">
+              <p class="subtitle has-text-centered">Fruits</p>
+            </div>
+          </div>
+
+          <p class="content has-text-justified" style="max-width:64ch;margin:1rem auto;">
+            The feature transforms a human face's contour and facial features into a fruit platter that still resembles a face。
+          </p>
       </div>
     </div>
   </div>
@@ -334,11 +344,16 @@
 <!-- Tasks Section: 核心展示区域 -->
 <section class="section">
   <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Code Reproduction</h2>
+      </div>
+    </div>
     
     <!-- Task 1: Flippy Illusions -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Task 1: Flippy Illusions</h2>
+        <h3 class="title is-4">Task 1: Flippy Illusions</h3>
         <div class="content has-text-justified">
           <p>
             We reproduced the generative framework for orientation-dependent optical illusions (180-degree rotation).
@@ -372,7 +387,7 @@
     <!-- Task 2 -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Task 2: Rotation Overlays</h2>
+        <h3 class="title is-4">Task 2: Rotation Overlays</h3>
         <div class="content has-text-justified">
           <p>
             Investigates the geometric entanglement of two image layers via pixel-wise multiplication, allowing semantics to change upon 90° rotation.
@@ -395,7 +410,7 @@
     <!-- Task 3 -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Task 3: Twist Squares</h2>
+        <h3 class="title is-4">Task 3: Twist Squares</h3>
         <div class="content has-text-justified">
           <p>
             The image domain is partitioned into a grid, and local patches rotate 90° to reveal secondary semantics.
@@ -419,7 +434,7 @@
     <!-- Task 4 -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Task 4: Parker’s Jigsaw Puzzles</h2>
+        <h3 class="title is-4">Task 4: Parker’s Jigsaw Puzzles</h3>
         <div class="content has-text-justified">
           <p>
             By optimizing a learnable texture against a specific UV map, we generate a source image that, when solved according to the puzzle logic, assembles into a completely distinct target image.
@@ -447,7 +462,7 @@
     <!-- Task 5 -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Task 5: Hidden Characters</h2>
+        <h3 class="title is-4">Task 5: Hidden Characters</h3>
         <div class="content has-text-justified">
           <p>
              Four distinct "prime images" optically combine (via simulated transparency stacking) to reveal a hidden secret image.
@@ -486,6 +501,8 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Extending the Framework</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
         <h3 class="title is-4">Image Prompt Supporting</h3>
         <div class="content has-text-justified">
           <p>
@@ -519,6 +536,8 @@
             <p class="subtitle has-text-centered" style="margin-top:1rem;">Lion(Hidden)</p>
           </div>
         </div>
+      </div>
+    </div>
       </div>
     </div>
   </div>
