@@ -269,6 +269,46 @@
 
 <!-- Teaser Section removed: rotation demo moved to Extending the Framework -->
 
+<!-- Face-to-Fruit demo: 插入于 Abstract 之前 -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <h3 class="title is-4">Face → Fruit Montage</h3>
+        <div style="display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:nowrap;">
+          <div style="flex:0 0 35%;display:flex;flex-direction:column;align-items:center;">
+            <img src="./static/images/fruit/wang.jpg" alt="Human face" style="max-height:320px;width:auto;object-fit:contain;display:block;margin:0 auto;">
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Human face</p>
+          </div>
+
+          <div style="flex:0 0 10%;display:flex;justify-content:center;align-items:center;">
+            <svg width="100%" height="80" viewBox="0 0 220 80" style="max-width:220px;display:block;" aria-hidden="true">
+              <defs>
+                <filter id="shadow2" x="-50%" y="-50%" width="200%" height="200%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.12"/>
+                </filter>
+                <marker id="arrowhead2" markerWidth="12" markerHeight="9" refX="12" refY="4.5" orient="auto">
+                  <polygon points="0 0, 12 4.5, 0 9" fill="#444"/>
+                </marker>
+              </defs>
+              <path d="M10 40 C70 40, 150 40, 210 40" stroke="#444" stroke-width="6" fill="none" stroke-linecap="round" filter="url(#shadow2)" marker-end="url(#arrowhead2)"/>
+            </svg>
+          </div>
+
+          <div style="flex:0 0 35%;display:flex;flex-direction:column;align-items:center;">
+            <img src="./static/images/fruit/changed_fruit.png" alt="Fruits" style="max-height:320px;width:auto;object-fit:contain;display:block;margin:0 auto;">
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Fruits</p>
+          </div>
+        </div>
+
+        <p class="content has-text-justified" style="max-width:64ch;margin:1rem auto;">
+          The feature transforms a human face's contour and facial features into a fruit platter that still resembles a face）。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Abstract Section -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -484,9 +524,9 @@
   </div>
 
     <!-- Rotation demo (moved here from teaser) -->
-    <h3 class="title is-4">Rotation Demo</h3>
-    <div class="columns is-centered">
-      <div class="column has-text-centered">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Rotation Demo</h3>
         <div style="display:flex;justify-content:center;">
           <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
             <source src="./static/videos/rotation.mp4" type="video/mp4">
@@ -498,7 +538,7 @@
     </div>
 
     <!-- Moving blur (same level as Image Prompt Supporting) -->
-    <div class="columns is-centered">
+    <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h3 class="title is-4">Moving blur</h3>
         <div class="content has-text-justified">
