@@ -237,17 +237,6 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link -->
-              <span class="link-block">
-                <!-- 🟢 [用户需修改] 上传你的PDF文件到 static/videos/ 或其他位置，并修改 href -->
-                <a href="./static/report.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Report PDF</span>
-                </a>
-              </span>
               <!-- Code Link -->
               <span class="link-block">
                 <!-- 🟢 [用户需修改] 你的 GitHub 仓库链接 -->
@@ -274,46 +263,9 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width has-text-centered">
-        <h3 class="title is-4">Face → Fruit Montage</h3>
-        <div style="display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:nowrap;">
-          <div style="flex:0 0 35%;display:flex;flex-direction:column;align-items:center;">
-            <img src="./static/images/fruit/wang.jpg" alt="Human face" style="max-height:320px;width:auto;object-fit:contain;display:block;margin:0 auto;">
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Human face</p>
-          </div>
-
-          <div style="flex:0 0 10%;display:flex;justify-content:center;align-items:center;">
-            <svg width="100%" height="80" viewBox="0 0 220 80" style="max-width:220px;display:block;" aria-hidden="true">
-              <defs>
-                <filter id="shadow2" x="-50%" y="-50%" width="200%" height="200%">
-                  <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.12"/>
-                </filter>
-                <marker id="arrowhead2" markerWidth="12" markerHeight="9" refX="12" refY="4.5" orient="auto">
-                  <polygon points="0 0, 12 4.5, 0 9" fill="#444"/>
-                </marker>
-              </defs>
-              <path d="M10 40 C70 40, 150 40, 210 40" stroke="#444" stroke-width="6" fill="none" stroke-linecap="round" filter="url(#shadow2)" marker-end="url(#arrowhead2)"/>
-            </svg>
-          </div>
-
-          <div style="flex:0 0 35%;display:flex;flex-direction:column;align-items:center;">
-            <img src="./static/images/fruit/changed_fruit.png" alt="Fruits" style="max-height:320px;width:auto;object-fit:contain;display:block;margin:0 auto;">
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Fruits</p>
-          </div>
+        <div style="display:flex;justify-content:center;">
+          <img class="lightbox-trigger" data-src="./static/images/fruit/wang_change.png" loading="lazy" src="./static/images/fruit/wang_change.png" alt="Wang Change" style="max-width:100%;height:auto;">
         </div>
-
-          <div style="display:flex;justify-content:center;align-items:center;gap:2rem;margin-top:0.5rem;">
-            <div style="flex:0 0 35%;text-align:center;">
-              <p class="subtitle has-text-centered">Human face</p>
-            </div>
-            <div style="flex:0 0 10%;"></div>
-            <div style="flex:0 0 35%;text-align:center;">
-              <p class="subtitle has-text-centered">Fruits</p>
-            </div>
-          </div>
-
-          <p class="content has-text-justified" style="max-width:64ch;margin:1rem auto;">
-            The feature transforms a human face's contour and facial features into a fruit platter that still resembles a face。
-          </p>
       </div>
     </div>
   </div>
@@ -328,12 +280,19 @@
         <div class="content has-text-justified">
           <!-- 🟢 [用户需修改] 摘要内容 (已根据 PDF 填入) -->
           <p>
-            This project explores the computational generation of multi-arrangement visual illusions by leveraging the rich
-            generative priors of pre-trained text-to-image diffusion models. Our goal is to reproduce and extend a unified gen
-            erative framework capable of automating this process.
-          </p>
-          <p>
-            We systematically implement five distinct types of illusions. Furthermore, we aim to advance beyond text-only conditioning by introducing "Image Prompt Supporting" and enable more precise control over the visual cognitive experience.
+            Recent advancements in text-to-image diffusion models have revolutionized the au-
+tomated generation of visual optical illusions. However, existing frameworks often
+struggle with structural inconsistency and limited visual quality, particularly when
+synthesizing illusions that require fine-grained and complex semantic control. In
+this paper, we present Faces in the Platter, a novel Component-Aware Optimization
+framework that addresses these limitations by introducing a hierarchical "divide-
+and-conquer" strategy. Unlike conventional approaches that optimize the target
+image exclusively at the global level, we jointly optimize both local components
+and the global structure. Furthermore, we successfully generates a diverse range
+of complex cognitive illusions, including Hybrid Portrait-Object illusions, Motion
+Blur illusions, Rotation illusions, and Frequency-Decoupled visuals. Extensive
+experiments demonstrate that our approach significantly outperforms existing meth-
+ods in terms of structural robustness, generation fidelity and control precision.
           </p>
         </div>
       </div>
@@ -342,6 +301,167 @@
 </section>
 
 <!-- Tasks Section: 核心展示区域 -->
+
+<!-- Extensions Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Extending the Framework</h2>
+    <!-- Component-Aware Diffusion Submodule -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Component-Aware Diffusion</h3>
+        <div class="content has-text-justified">
+          <p>Demonstration images for the Component-Aware Diffusion experiments (click to enlarge):</p>
+        </div>
+        <div class="columns is-centered is-multiline">
+          <div class="column is-full has-text-centered">
+            <img class="lightbox-trigger" data-src="./static/images/fruit/frame.png" loading="lazy" src="./static/images/fruit/frame.png" alt="frame" style="max-width:100%; height:auto;">
+            <p class="subtitle has-text-centered" style="margin-top:0.5rem;">Frame</p>
+          </div>
+          <div class="column is-full has-text-centered">
+            <img class="lightbox-trigger" data-src="./static/images/fruit/compare.png" loading="lazy" src="./static/images/fruit/compare.png" alt="compare" style="max-width:100%; height:auto;">
+            <p class="subtitle has-text-centered" style="margin-top:0.5rem;">Compare</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Image Prompt Supporting</h3>
+        <div class="content has-text-justified">
+          <p>
+            We jointly use both text prompt and image prompt to generate illusions, successfully embedding image prompts (e.g., Mona Lisa, Lion) into scenes described by texts.
+          </p>
+        </div>
+        <!-- 🟢 [用户需修改] 替换为 Extension 的图片 (Figure 6) -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" alt="MonaLisa Origin" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Mona-Lisa (Origin)</p>
+          </div>
+          <div class="column">
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa.png" alt="MonaLisa" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Mona-Lisa(Hidden)</p>
+          </div>
+          <div class="column">
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lion_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion_origin.png" alt="Lion Origin" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Lion (Origin)</p>
+          </div>
+          <div class="column">
+            <div style="display:flex;justify-content:center;">
+              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lio(Hidden).png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion.png" alt="Lion" style="max-width:100%;height:auto;">
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Lion(Hidden)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Rotation demo (moved here from teaser) -->
+      <!-- Task Frequency Submodule -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h3 class="title is-4">Task Frequency</h3>
+          <div class="content has-text-justified">
+            <p>Examples from the task_frequency dataset (click to enlarge):</p>
+          </div>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-one-third has-text-centered">
+              <img class="lightbox-trigger" data-src="./static/images/task_frequency/doge_cybercity.jpg" loading="lazy" src="./static/images/task_frequency/doge_cybercity.jpg" alt="doge_cybercity" style="width:100%; height:auto;">
+              <p class="subtitle has-text-centered" style="margin-top:0.5rem;">Doge — Cybercity</p>
+            </div>
+            <div class="column is-one-third has-text-centered">
+              <img class="lightbox-trigger" data-src="./static/images/task_frequency/doge_village.jpg" loading="lazy" src="./static/images/task_frequency/doge_village.jpg" alt="doge_village" style="width:100%; height:auto;">
+              <p class="subtitle has-text-centered" style="margin-top:0.5rem;">Doge — Village</p>
+            </div>
+            <div class="column is-one-third has-text-centered">
+              <img class="lightbox-trigger" data-src="./static/images/task_frequency/einstein_mountain.jpg" loading="lazy" src="./static/images/task_frequency/einstein_mountain.jpg" alt="einstein_mountain" style="width:100%; height:auto;">
+              <p class="subtitle has-text-centered" style="margin-top:0.5rem;">Einstein — Mountain</p>
+            </div>
+
+            <div class="column is-one-third has-text-centered">
+              <img class="lightbox-trigger" data-src="./static/images/task_frequency/einstein_village.png" loading="lazy" src="./static/images/task_frequency/einstein_village.png" alt="einstein_village" style="width:100%; height:auto;">
+              <p class="subtitle has-text-centered" style="margin-top:0.5rem;">Einstein — Village</p>
+            </div>
+            <div class="column is-one-third has-text-centered">
+              <img class="lightbox-trigger" data-src="./static/images/task_frequency/monna_village.jpg" loading="lazy" src="./static/images/task_frequency/monna_village.jpg" alt="monna_village" style="width:100%; height:auto;">
+              <p class="subtitle has-text-centered" style="margin-top:0.5rem;">Monna — Village</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Rotation Demo</h3>
+        <div style="display:flex;justify-content:center;">
+          <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+            <source src="./static/videos/rotation.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="subtitle has-text-centered" style="margin-top:1rem;">These two images, when rotated every sixty degrees and stitched together, each produce a new image.</p>
+      </div>
+    </div>
+
+    <!-- Moving blur (same level as Image Prompt Supporting) -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4">Moving blur</h3>
+        <div class="content has-text-justified">
+          <p>
+            We reproduced the generative framework for orientation-dependent optical illusions (180-degree rotation).
+            The images manifest distinct semantics upon rotation.
+          </p>
+        </div>
+        <div class="columns is-centered is-multiline">
+          <!-- 每行展示一个视频，大小与 rotation.mp4 保持一致（居中，max-width:100%） -->
+          <div class="column is-full has-text-centered">
+            <div style="display:flex;justify-content:center;">
+              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+                <source src="./static/videos/blur_panda.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Mountain - Panda</p>
+          </div>
+
+          <div class="column is-full has-text-centered">
+            <div style="display:flex;justify-content:center;">
+              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+                <source src="./static/videos/blur_people.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Dog - People</p>
+          </div>
+
+          <div class="column is-full has-text-centered">
+            <div style="display:flex;justify-content:center;">
+              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
+                <source src="./static/videos/blur_rabbit.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Duck - Rabbit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+</section>
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -495,124 +615,15 @@
   </div>
 </section>
 
-<!-- Extensions Section -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Extending the Framework</h2>
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h3 class="title is-4">Image Prompt Supporting</h3>
-        <div class="content has-text-justified">
-          <p>
-            We jointly use both text prompt and image prompt to generate illusions, successfully embedding image prompts (e.g., Mona Lisa, Lion) into scenes described by texts.
-          </p>
-        </div>
-        <!-- 🟢 [用户需修改] 替换为 Extension 的图片 (Figure 6) -->
-        <div class="columns is-centered has-text-centered">
-          <div class="column">
-            <div style="display:flex;justify-content:center;">
-              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa_origin.png" alt="MonaLisa Origin" style="max-width:100%;height:auto;">
-            </div>
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Mona-Lisa (Origin)</p>
-          </div>
-          <div class="column">
-            <div style="display:flex;justify-content:center;">
-              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/monalisa.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/monalisa.png" alt="MonaLisa" style="max-width:100%;height:auto;">
-            </div>
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Mona-Lisa(Hidden)</p>
-          </div>
-          <div class="column">
-            <div style="display:flex;justify-content:center;">
-              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lion_origin.png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion_origin.png" alt="Lion Origin" style="max-width:100%;height:auto;">
-            </div>
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Lion (Origin)</p>
-          </div>
-          <div class="column">
-            <div style="display:flex;justify-content:center;">
-              <img class="lightbox-trigger" data-src="./static/images/Step2%20Image%20Prompt/lio(Hidden).png" loading="lazy" src="./static/images/Step2%20Image%20Prompt/lion.png" alt="Lion" style="max-width:100%;height:auto;">
-            </div>
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Lion(Hidden)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-      </div>
-    </div>
-  </div>
-
-    <!-- Rotation demo (moved here from teaser) -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h3 class="title is-4">Rotation Demo</h3>
-        <div style="display:flex;justify-content:center;">
-          <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
-            <source src="./static/videos/rotation.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p class="subtitle has-text-centered" style="margin-top:1rem;">These two images, when rotated every sixty degrees and stitched together, each produce a new image.</p>
-      </div>
-    </div>
-
-    <!-- Moving blur (same level as Image Prompt Supporting) -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h3 class="title is-4">Moving blur</h3>
-        <div class="content has-text-justified">
-          <p>
-            We reproduced the generative framework for orientation-dependent optical illusions (180-degree rotation).
-            The images manifest distinct semantics upon rotation.
-          </p>
-        </div>
-        <div class="columns is-centered is-multiline">
-          <!-- 每行展示一个视频，大小与 rotation.mp4 保持一致（居中，max-width:100%） -->
-          <div class="column is-full has-text-centered">
-            <div style="display:flex;justify-content:center;">
-              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
-                <source src="./static/videos/blur_panda.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Mountain - Panda</p>
-          </div>
-
-          <div class="column is-full has-text-centered">
-            <div style="display:flex;justify-content:center;">
-              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
-                <source src="./static/videos/blur_people.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Dog - People</p>
-          </div>
-
-          <div class="column is-full has-text-centered">
-            <div style="display:flex;justify-content:center;">
-              <video controls autoplay muted loop playsinline style="max-width:100%;height:auto;">
-                <source src="./static/videos/blur_rabbit.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <p class="subtitle has-text-centered" style="margin-top:1rem;">Blur: Duck - Rabbit</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br/>
-
-</section>
-
 <!-- BibTeX -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <p>If you find this project useful, please cite our report:</p>
     <!-- 🟢 [用户需修改] 可以在这里填入自定义的 BibTeX -->
-    <pre><code>@article{diffusionillusions2024,
+    <pre><code>@CV_Homework_PekingUniversity_2026,
   author    = {Tan, Bowen and Sheng, Shi and Zheng, Hanyu},
-  title     = {Creating Visual Cognitive Illusions - Milestone Report},
+  title     = {Creating Visual Cognitive Illusions - Final Report},
   year      = {2026},
 }</code></pre>
   </div>
